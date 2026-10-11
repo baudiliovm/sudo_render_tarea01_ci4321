@@ -16,7 +16,35 @@ main {
 }
 
 h1 {
+  margin: 0;
   font-size: 1.25rem;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+button {
+  padding: 6px 10px;
+  border: 0;
+  border-radius: 4px;
+  background: #8aaaff;
+  color: #141722;
+  font: inherit;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #a6beff;
+}
+
+button:focus-visible {
+  outline: 2px solid #e7eaf3;
+  outline-offset: 3px;
 }
 
 canvas {

@@ -1,5 +1,5 @@
 // Position-only triangle with a constant color provided by FixedFunction.
-import { ATTRIB, createFixedFunction, LIGHTING } from '../vendor/ff/ff';
+import { ATTRIB, createFixedFunction, LIGHTING, type Color } from '../vendor/ff/ff';
 import { CANVAS_SIZE, CLEAR_COLOR, TRIANGLE } from './shared';
 
 function getContext(canvas: HTMLCanvasElement): WebGL2RenderingContext {
@@ -41,13 +41,18 @@ function draw(gl: WebGL2RenderingContext, ff: ReturnType<typeof createFixedFunct
   ff.drawArrays(gl.TRIANGLES, 0, 3);
 }
 
-export function run(canvas: HTMLCanvasElement): void {
+export function run(canvas: HTMLCanvasElement): (color: Color) => void {
   const gl = getContext(canvas);
   const ff = createFixedFunction(gl, { debug: true });
   ff.disable(LIGHTING);
-  ff.setColor([1, 0, 0]);
   const buffer = createVertexBuffer(gl, TRIANGLE);
   const vao = createVAO(gl, buffer);
   setupState(gl, canvas);
-  draw(gl, ff, vao);
+  const render = (color: Color): void => {
+    ff.setColor(color);
+    draw(gl, ff, vao);
+  };
+
+  render([1, 0, 0]);
+  return render;
 }

@@ -35,7 +35,11 @@ function setupState(gl: WebGL2RenderingContext, canvas: HTMLCanvasElement): void
   gl.clearColor(...CLEAR_COLOR);
 }
 
-function draw(gl: WebGL2RenderingContext, ff: ReturnType<typeof createFixedFunction>, vao: WebGLVertexArrayObject): void {
+function draw(
+  gl: WebGL2RenderingContext,
+  ff: ReturnType<typeof createFixedFunction>,
+  vao: WebGLVertexArrayObject,
+): void {
   gl.clear(gl.COLOR_BUFFER_BIT);
   gl.bindVertexArray(vao);
   ff.drawArrays(gl.TRIANGLES, 0, 3);

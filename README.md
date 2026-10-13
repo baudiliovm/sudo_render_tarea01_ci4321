@@ -4,8 +4,8 @@ Proyecto de Computación Gráfica I con TypeScript y WebGL2.
 
 ## Integrantes
 
-- Baudilio Velasquez
-- Luis Isea
+- Baudilio Velasquez - 18-10665
+- Luis Isea - 19-10175
 
 ## Requisitos
 

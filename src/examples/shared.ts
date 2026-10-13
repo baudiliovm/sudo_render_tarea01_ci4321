@@ -41,3 +41,8 @@ export function createFanVertices(segments: number): Float32Array {
 
 /** Six counterclockwise triangles around the center. */
 export const HEXAGON = createFanVertices(6);
+
+/** Number of triangles used to approximate a circle (maximum: 64). */
+export const SEGMENTS = 64;
+
+export const CIRCLE = createFanVertices(SEGMENTS);

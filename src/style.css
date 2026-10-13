@@ -48,9 +48,31 @@ button:focus-visible {
 }
 
 canvas {
+  box-sizing: border-box;
   display: block;
   width: 100%;
   height: auto;
   aspect-ratio: 1;
+  background: #1b1e2b;
   border: 1px solid #30364c;
+}
+
+.team-info {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #30364c;
+  color: #b8c1d9;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.team-info p {
+  margin: 4px 0;
+}
+
+.team-name {
+  color: #e7eaf3;
+  font-size: 1rem;
+  font-weight: 700;
 }

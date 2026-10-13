@@ -4,14 +4,32 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CI4321 · Tarea 01</title>
+    <link rel="stylesheet" href="/src/style.css" />
   </head>
   <body>
     <main>
       <div class="toolbar">
         <h1>CI4321 · Tarea 01</h1>
-        <button id="color-button" type="button" aria-label="Cambiar color. Color actual: rojo">Color: rojo</button>
+        <button
+          id="color-button"
+          type="button"
+          aria-label="Cambiar color. Color actual: rojo"
+        >
+          Color: rojo
+        </button>
       </div>
-      <canvas id="canvas" aria-label="Triángulo rojo"></canvas>
+      <canvas
+        id="canvas"
+        width="480"
+        height="480"
+        aria-label="Triángulo rojo"
+      ></canvas>
+      <footer class="team-info" aria-label="Integrantes del equipo">
+        <p class="team-name">Sudo Render</p>
+        <p>CI4321 · Computación Gráfica I</p>
+        <p>Baudilio Velasquez · 18-10665</p>
+        <p>Luis Isea · 19-10175</p>
+      </footer>
     </main>
     <script type="module" src="/src/main.ts"></script>
   </body>

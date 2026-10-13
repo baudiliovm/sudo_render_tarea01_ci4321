@@ -14,3 +14,10 @@ export const TRIANGLE = new Float32Array([
   //  x      y     z
   0.0, 0.7, 0.0, -0.7, -0.6, 0.0, 0.7, -0.6, 0.0,
 ]);
+
+/** Square: four vertices, shared by two counterclockwise triangles. */
+export const SQUARE = new Float32Array([
+  -0.55, -0.55, 0.0, 0.55, -0.55, 0.0, 0.55, 0.55, 0.0, -0.55, 0.55, 0.0,
+]);
+
+export const SQUARE_INDICES = new Uint16Array([0, 1, 2, 0, 2, 3]);

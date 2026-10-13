@@ -21,3 +21,23 @@ export const SQUARE = new Float32Array([
 ]);
 
 export const SQUARE_INDICES = new Uint16Array([0, 1, 2, 0, 2, 3]);
+
+/** Build a triangle fan: center, perimeter vertices and the first one again to close it. */
+export function createFanVertices(segments: number): Float32Array {
+  if (!Number.isInteger(segments) || segments < 3 || segments > 64) {
+    throw new RangeError('Segments must be an integer between 3 and 64.');
+  }
+
+  const radius = 0.65;
+  const positions: number[] = [0, 0, 0];
+
+  for (let i = 0; i <= segments; i++) {
+    const angle = (2 * Math.PI * i) / segments;
+    positions.push(radius * Math.cos(angle), radius * Math.sin(angle), 0);
+  }
+
+  return new Float32Array(positions);
+}
+
+/** Six counterclockwise triangles around the center. */
+export const HEXAGON = createFanVertices(6);

@@ -1,8 +1,8 @@
 // Position-only figures with a constant color provided by FixedFunction.
 import { ATTRIB, createFixedFunction, LIGHTING, type Color } from '../vendor/ff/ff';
-import { CANVAS_SIZE, CLEAR_COLOR, SQUARE, SQUARE_INDICES, TRIANGLE } from './shared';
+import { CANVAS_SIZE, CLEAR_COLOR, HEXAGON, SQUARE, SQUARE_INDICES, TRIANGLE } from './shared';
 
-export type Shape = 'triangle' | 'square';
+export type Shape = 'triangle' | 'square' | 'hexagon';
 
 type Geometry = {
   vao: WebGLVertexArrayObject;
@@ -87,6 +87,7 @@ export function run(canvas: HTMLCanvasElement): (color: Color, shape?: Shape) =>
   const geometries: Record<Shape, Geometry> = {
     triangle: createGeometry(gl, TRIANGLE, gl.TRIANGLES),
     square: createGeometry(gl, SQUARE, gl.TRIANGLES, SQUARE_INDICES),
+    hexagon: createGeometry(gl, HEXAGON, gl.TRIANGLE_FAN),
   };
 
   setupState(gl, canvas);

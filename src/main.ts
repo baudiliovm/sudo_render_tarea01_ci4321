@@ -1,10 +1,14 @@
-import { run } from './examples/triangle.ff';
+import { run, type Shape } from './examples/shapes.ff';
 
-const canvas = document.querySelector<HTMLCanvasElement>('#canvas');
-if (!canvas) throw new Error('Canvas element was not found.');
+function getElement<T extends Element>(selector: string): T {
+  const element = document.querySelector<T>(selector);
+  if (!element) throw new Error(`Element not found: ${selector}`);
+  return element;
+}
 
-const colorButton = document.querySelector<HTMLButtonElement>('#color-button');
-if (!colorButton) throw new Error('Color button was not found.');
+const canvas = getElement<HTMLCanvasElement>('#canvas');
+const colorButton = getElement<HTMLButtonElement>('#color-button');
+const shapeButton = getElement<HTMLButtonElement>('#shape-button');
 
 const colors = [
   { name: 'rojo', value: [1, 0, 0] },
@@ -12,14 +16,35 @@ const colors = [
   { name: 'azul', value: [0, 0, 1] },
 ] as const;
 
+const shapes: { name: string; value: Shape }[] = [
+  { name: 'triángulo', value: 'triangle' },
+  { name: 'cuadrado', value: 'square' },
+  { name: 'hexágono', value: 'hexagon' },
+  { name: 'círculo', value: 'circle' },
+];
+
 let colorIndex = 0;
+let shapeIndex = 0;
 const render = run(canvas);
+
+function update(): void {
+  const color = colors[colorIndex];
+  const shape = shapes[shapeIndex];
+
+  render(color.value, shape.value);
+  colorButton.textContent = `Color: ${color.name}`;
+  colorButton.setAttribute('aria-label', `Cambiar color. Color actual: ${color.name}`);
+  shapeButton.textContent = `Figura: ${shape.name}`;
+  shapeButton.setAttribute('aria-label', `Cambiar figura. Figura actual: ${shape.name}`);
+  canvas.setAttribute('aria-label', `${shape.name} ${color.name}`);
+}
 
 colorButton.addEventListener('click', () => {
   colorIndex = (colorIndex + 1) % colors.length;
-  const color = colors[colorIndex];
-  render(color.value);
-  colorButton.textContent = `Color: ${color.name}`;
-  colorButton.setAttribute('aria-label', `Cambiar color. Color actual: ${color.name}`);
-  canvas.setAttribute('aria-label', `Triángulo ${color.name}`);
+  update();
+});
+
+shapeButton.addEventListener('click', () => {
+  shapeIndex = (shapeIndex + 1) % shapes.length;
+  update();
 });
